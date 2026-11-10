@@ -1,30 +1,254 @@
-GAGNEO ✦
-👤
-Bienvenue sur GAGNEO
-Chaque économie est une victoire ✨
-Des bons plans, des missions et des récompenses au même endroit.
-🪙
-0
-Points GAGNEO
-💚
-0,00 €
-Économies enregistrées
-🎉 Bienvenue dans GAGNEO !
-Accomplis tes premières missions pour découvrir l'application.
-🚀
-🎯 Missions du jour
-Tout voir →
-🔥 Bons plans
-Découvrir →
-🎁 Récompenses
-Voir tout →
-🏠
-Accueil
-🎯
-Missions
-💸
-Bons plans
-🎁
-Cadeaux
-👤
-Profil
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080f22">
+<title>GAGNEO - Chaque économie est une victoire</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080f22;color:white;font-family:Arial,sans-serif}
+header{padding:22px 20px;background:#101a35;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:27px;font-weight:900;color:#f7c85b}
+.logo span{color:#fff}
+.avatar{background:#26375b;border-radius:50%;padding:12px}
+main{max-width:700px;margin:auto;padding:20px 18px 105px}
+h1{font-size:27px;margin:12px 0}
+h2{font-size:20px}
+p{color:#b7c4df;line-height:1.5}
+.hero{background:linear-gradient(135deg,#243e89,#12234d);padding:24px;border-radius:24px;margin-bottom:20px}
+.hero h1{margin-top:0}
+.gold{color:#ffd56c}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.stat{background:#172544;padding:20px;border-radius:19px}
+.stat strong{display:block;font-size:27px;margin:10px 0;color:#ffd56c}
+.stat small{color:#aebddd}
+.card{background:#15213b;border:1px solid #29385a;border-radius:20px;padding:20px;margin:14px 0}
+.card h3{margin:0 0 10px}
+button{border:0;background:#f7c85b;color:#111a2c;font-weight:bold;border-radius:13px;padding:13px 18px;cursor:pointer}
+button:disabled{opacity:.5;cursor:default}
+.secondary{background:#293e70;color:white}
+.green{color:#5fe0a1}
+nav{position:fixed;bottom:0;left:0;right:0;background:#101a30;display:flex;justify-content:space-around;padding:13px 3px 22px;border-top:1px solid #2a3b60}
+nav button{background:none;color:#c4cee1;font-size:12px;padding:7px 4px}
+nav button.active{color:#ffd56c}
+nav span{display:block;font-size:24px;margin-bottom:5px}
+.page{display:none}
+.page.active{display:block}
+.tag{display:inline-block;background:#304675;color:#ffdb82;padding:7px 12px;border-radius:20px;font-size:12px;margin-bottom:12px}
+input{width:100%;padding:14px;background:#0c1730;border:1px solid #405078;color:white;border-radius:12px;margin:8px 0 16px;font-size:16px}
+.notice{font-size:12px;color:#9caecb}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">GAGNE<span>O</span> ✦</div>
+<div class="avatar">👤</div>
+</header>
+
+<main>
+<section id="accueil" class="page active">
+<div class="hero">
+<div class="tag">✨ Bienvenue sur GAGNEO</div>
+<h1>Chaque économie est une <span class="gold">victoire !</span></h1>
+<p>Découvre des bons plans, accomplis des missions et gagne des points pour obtenir des récompenses.</p>
+<button onclick="ouvrir('missions')">Commencer à gagner 🚀</button>
+</div>
+
+<div class="stats">
+<div class="stat">🪙<strong class="points">0</strong><small>Points GAGNEO</small></div>
+<div class="stat">💚<strong class="economies">0,00 €</strong><small>Économies enregistrées</small></div>
+</div>
+
+<h2>🔥 À découvrir</h2>
+<div class="card">
+<h3>🎯 Missions du jour</h3>
+<p>Réalise des actions simples pour obtenir des points.</p>
+<button onclick="ouvrir('missions')">Voir les missions →</button>
+</div>
+<div class="card">
+<h3>💸 Bons plans</h3>
+<p>Profite d'astuces et d'offres pour économiser.</p>
+<button onclick="ouvrir('bonsplans')">Découvrir →</button>
+</div>
+<div class="card">
+<h3>🎁 Récompenses</h3>
+<p>Échange tes points contre des cadeaux de démonstration.</p>
+<button onclick="ouvrir('cadeaux')">Voir les cadeaux →</button>
+</div>
+</section>
+
+<section id="missions" class="page">
+<h1>🎯 Missions GAGNEO</h1>
+<p>Accomplis tes missions pour gagner des points virtuels.</p>
+<div id="listeMissions"></div>
+</section>
+
+<section id="bonsplans" class="page">
+<h1>💸 Mes bons plans</h1>
+<p>Des idées pour réduire tes dépenses au quotidien.</p>
+<div class="card">
+<h3>🛒 Comparer les prix</h3>
+<p>Compare les prix au kilo ou au litre avant d'acheter.</p>
+<button onclick="ajouterEconomie()">J'ai économisé 5 €</button>
+</div>
+<div class="card">
+<h3>🍽️ Réduire le gaspillage</h3>
+<p>Prépare une liste de courses et utilise tes restes.</p>
+<button onclick="ajouterEconomie()">J'ai économisé 5 €</button>
+</div>
+<div class="card">
+<h3>📱 Vérifier ses abonnements</h3>
+<p>Supprime les abonnements que tu n'utilises plus.</p>
+<button onclick="ajouterEconomie()">J'ai économisé 5 €</button>
+</div>
+<p class="notice">Les économies sont déclarées manuellement, sans vérification.</p>
+</section>
+
+<section id="cadeaux" class="page">
+<h1>🎁 Récompenses</h1>
+<p>Utilise tes points virtuels dans cette boutique de démonstration.</p>
+<div class="card">
+<h3>☕ Pause café virtuelle</h3>
+<p>Coût : 100 points</p>
+<button onclick="echanger(100,'Pause café virtuelle')">Échanger</button>
+</div>
+<div class="card">
+<h3>🏆 Badge Champion</h3>
+<p>Coût : 250 points</p>
+<button onclick="echanger(250,'Badge Champion')">Échanger</button>
+</div>
+<div class="card">
+<h3>👑 Badge GAGNEO VIP</h3>
+<p>Coût : 500 points</p>
+<button onclick="echanger(500,'Badge VIP')">Échanger</button>
+</div>
+<p class="notice">Aucun cadeau réel ni argent n'est distribué dans cette version.</p>
+</section>
+
+<section id="profil" class="page">
+<h1>👤 Mon profil</h1>
+<div class="card">
+<h3>Bienvenue sur GAGNEO</h3>
+<label>Ton prénom</label>
+<input id="prenom" placeholder="Entre ton prénom">
+<button onclick="sauverProfil()">Enregistrer</button>
+</div>
+<div class="stats">
+<div class="stat">🪙<strong class="points">0</strong><small>Mes points</small></div>
+<div class="stat">💰<strong class="economies">0,00 €</strong><small>Mes économies</small></div>
+</div>
+<div class="card">
+<h3>🏅 Mes récompenses</h3>
+<p id="historique">Aucune récompense pour le moment.</p>
+</div>
+<button class="secondary" onclick="reinitialiser()">Réinitialiser mes données</button>
+</section>
+</main>
+
+<nav>
+<button id="nav-accueil" class="active" onclick="ouvrir('accueil')"><span>🏠</span>Accueil</button>
+<button id="nav-missions" onclick="ouvrir('missions')"><span>🎯</span>Missions</button>
+<button id="nav-bonsplans" onclick="ouvrir('bonsplans')"><span>💸</span>Bons plans</button>
+<button id="nav-cadeaux" onclick="ouvrir('cadeaux')"><span>🎁</span>Cadeaux</button>
+<button id="nav-profil" onclick="ouvrir('profil')"><span>👤</span>Profil</button>
+</nav>
+
+<script>
+const cle="gagneo_demo_v1";
+const missions=[
+{titre:"Bienvenue sur GAGNEO",points:50,desc:"Découvre ton application."},
+{titre:"Découvrir les bons plans",points:30,desc:"Explore les astuces pour économiser."},
+{titre:"Première mission",points:20,desc:"Commence ton parcours GAGNEO."}
+];
+let donnees;
+try{
+donnees=JSON.parse(localStorage.getItem(cle))||{};
+}catch(e){donnees={};}
+donnees={
+points:Number(donnees.points)||0,
+economies:Number(donnees.economies)||0,
+prenom:donnees.prenom||"",
+missions:donnees.missions||[],
+cadeaux:donnees.cadeaux||[]
+};
+function sauver(){
+localStorage.setItem(cle,JSON.stringify(donnees));
+actualiser();
+}
+function actualiser(){
+document.querySelectorAll(".points").forEach(e=>e.textContent=donnees.points);
+document.querySelectorAll(".economies").forEach(e=>e.textContent=donnees.economies.toFixed(2).replace(".",",")+" €");
+document.getElementById("prenom").value=donnees.prenom;
+document.getElementById("historique").textContent=donnees.cadeaux.length?donnees.cadeaux.join(" • "):"Aucune récompense pour le moment.";
+afficherMissions();
+}
+function ouvrir(page){
+document.querySelectorAll(".page").forEach(e=>e.classList.remove("active"));
+document.getElementById(page).classList.add("active");
+document.querySelectorAll("nav button").forEach(e=>e.classList.remove("active"));
+document.getElementById("nav-"+page).classList.add("active");
+window.scrollTo(0,0);
+}
+function afficherMissions(){
+let zone=document.getElementById("listeMissions");
+zone.innerHTML="";
+missions.forEach((m,i)=>{
+let fini=donnees.missions.includes(i);
+let carte=document.createElement("div");
+carte.className="card";
+let titre=document.createElement("h3");
+titre.textContent="🚀 "+m.titre;
+let description=document.createElement("p");
+description.textContent=m.desc;
+let gain=document.createElement("p");
+gain.className="gold";
+gain.textContent="+"+m.points+" points";
+let bouton=document.createElement("button");
+bouton.textContent=fini?"✓ Terminée":"Valider la mission";
+bouton.disabled=fini;
+bouton.onclick=()=>terminerMission(i);
+carte.append(titre,description,gain,bouton);
+zone.appendChild(carte);
+});
+}
+function terminerMission(i){
+if(donnees.missions.includes(i))return;
+donnees.missions.push(i);
+donnees.points+=missions[i].points;
+sauver();
+alert("Bravo ! +"+missions[i].points+" points !");
+}
+function ajouterEconomie(){
+donnees.economies+=5;
+sauver();
+alert("5 € ajoutés à ton suivi d'économies !");
+}
+function echanger(cout,nom){
+if(donnees.points<cout){
+alert("Tu n'as pas encore assez de points !");
+return;
+}
+if(!confirm("Échanger "+cout+" points contre "+nom+" ?"))return;
+donnees.points-=cout;
+donnees.cadeaux.push(nom);
+sauver();
+alert("Récompense virtuelle obtenue !");
+}
+function sauverProfil(){
+donnees.prenom=document.getElementById("prenom").value.trim().slice(0,50);
+sauver();
+alert("Profil enregistré !");
+}
+function reinitialiser(){
+if(confirm("Effacer tous tes points et tes données de démonstration ?")){
+localStorage.removeItem(cle);
+location.reload();
+}
+}
+actualiser();
+</script>
+</body>
+</html>
